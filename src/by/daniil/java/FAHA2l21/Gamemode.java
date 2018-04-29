@@ -24,6 +24,8 @@ public abstract class Gamemode extends GraphicsProgram{
 		while(true){
 			update();
 			deltaTime = Duration.between(beginTime, Instant.now());
+			beginTime = Instant.now();
+			pause(1);
 		}
 	};
 	
