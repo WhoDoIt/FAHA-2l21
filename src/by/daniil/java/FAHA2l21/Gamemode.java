@@ -1,9 +1,6 @@
 package by.daniil.java.FAHA2l21;
 
 import java.awt.event.KeyEvent;
-import java.sql.Time;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 
 import acm.program.GraphicsProgram;
@@ -13,18 +10,15 @@ import by.daniil.java.FAHA2l21.utils.Axis;
 public abstract class Gamemode extends GraphicsProgram{
 	protected ArrayList<Player> players;
 	protected Axis axis;
-	protected Duration deltaTime;
+	protected double deltaTime;
 	
 	public final void run(){
 		axis = new Axis();
 		addKeyListeners();
 		startGame();
-		deltaTime = Duration.ZERO;
-		Instant beginTime = Instant.now();
+		deltaTime = 0.001;
 		while(true){
 			update();
-			deltaTime = Duration.between(beginTime, Instant.now());
-			beginTime = Instant.now();
 			pause(1);
 		}
 	};
@@ -37,11 +31,11 @@ public abstract class Gamemode extends GraphicsProgram{
 		System.out.println("UPDATE");
 	}
 	
-	public final void keyPressed(KeyEvent e){
+	public void keyPressed(KeyEvent e){
 		axis.press(e.getKeyCode());
 	}
 	
-	public final void keyRelesed(KeyEvent e){
+	public void keyReleased(KeyEvent e){
 		axis.release(e.getKeyCode());
 	}
 }

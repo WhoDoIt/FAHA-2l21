@@ -1,5 +1,6 @@
 package by.daniil.java.FAHA2l21.objs;
 
+import by.daniil.java.FAHA2l21.utils.Vector;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GPoint;
@@ -9,12 +10,16 @@ public class Player {
 	private GOval main;
 	private double power = 8;
 	
-	Player(GObject[] graphics, double radius){
+	public GOval getGOval(){
+		return this.main;
+	}
+	
+	public Player(GObject[] graphics, double radius){
 		this.graphics = graphics;
 		this.main = new GOval(radius, radius);
 	}
 	
-	Player(double radius){
+	public Player(double radius){
 		graphics = null;
 		main = new GOval(radius, radius);
 	}
@@ -45,6 +50,11 @@ public class Player {
 				obj.setLocation(x, y);
 		}
 		main.setLocation(x, y);
+	}
+	
+	public void move(Vector move){
+		this.move(move.x, move.y);
+
 	}
 	
 	public void move(double dx, double dy){
