@@ -1,5 +1,6 @@
 package by.daniil.java.FAHA2l21;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import by.daniil.java.FAHA2l21.objs.Player;
@@ -24,6 +25,9 @@ public class Testubg extends Gamemode {
 		
 		players.add(new Player(50));
 		players.add(new Player(50));
+		
+		players.get(0).getGOval().setColor(Color.BLUE);
+		players.get(1).getGOval().setColor(Color.RED);
 		
 		borders = new GLine[2];
 		borders[0] = new GLine(0, 0, 1280, 0);
@@ -64,6 +68,7 @@ public class Testubg extends Gamemode {
 		Vector temp = ball.normilize().multiply(ball_speed);
 		
 		oval.move(temp.x*this.deltaTime, temp.y*this.deltaTime);
+		
 		if(ball_speed>0){
 			ball_speed-=600*this.deltaTime;
 		}
