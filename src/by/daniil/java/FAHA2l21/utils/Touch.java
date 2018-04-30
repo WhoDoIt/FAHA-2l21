@@ -16,21 +16,27 @@ public class Touch {
 		return (length<=oval1.getHeight()/2 + oval2.getHeight()/2)?true:false;
 	}
 	
-	public static boolean is(GOval oval, GLine line){
-		GPoint c = getCenter(oval);
-		double x0 = oval.getX();
-		double y0 = oval.getY();
-		Vector ov = new Vector(x0, y0);
-		double x1 = line.getStartPoint().getX();
-		double y1 = line.getStartPoint().getY();
-		double x2 = line.getEndPoint().getX();
-		double y2 = line.getEndPoint().getY();
-		Vector l1 = new Vector(x1,y1);
-		Vector l2 = new Vector(x2,y2);
-		double h = Math.abs(((x2-x1)*(y0-y1)-(y2-y1)*(x0-x1))/(new Vector(x2-x1,y2-y1)).length());
-		if(h<=oval.getWidth()/2)
-			return true;
-		else
-			return false;
+	public static double lengthForPoints(  double x1,
+			double y1,
+			double x2,
+			double y2	){ // Ќаходим рассто€ние между точка в пространстве
+		return Math.sqrt( Math.pow( Math.abs( x1-x2 ), 2 ) + Math.pow( Math.abs( y1-y2 ), 2 ) );
+	}
+	
+	public static boolean is(GLine line, GOval oval){ // ѕересекаютс€ ли отрезок и круг
+		if( line.getStartPoint().getX() == line.getEndPoint().getX() ){
+			return lengthForPoints( oval.getX()+oval.getWidth()/2, 
+									oval.getY()+oval.getWidth()/2,
+									line.getStartPoint().getX(),
+									oval.getY()+oval.getWidth()/2)
+									<= oval.getWidth()/2;
+		} else {
+			return lengthForPoints( oval.getX()+oval.getWidth()/2,
+									oval.getY()+oval.getWidth()/2,
+									oval.getX()+oval.getWidth()/2,
+									line.getStartPoint().getY() )
+									<=
+									oval.getWidth()/2;
+		}
 	}
 }
