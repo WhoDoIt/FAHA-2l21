@@ -27,14 +27,18 @@ public class Ball extends GOval{
 	public Vector move;
 	public GImage ball;
 	
-	@Override
-	public void move(double dx, double dy){
-		super.move(dx, dy);
-		this.ball.move(dx, dy);
-	}
 	
 	public void add(GCanvas canvas){
+		if(ball==null)
 		canvas.add(this);
+		else
 		canvas.add(ball);
+	}
+	
+	@Override
+	public void setLocation(double x, double y){
+		super.setLocation(x, y);
+		if(ball!=null)
+		this.ball.setLocation(x, y);
 	}
 }
